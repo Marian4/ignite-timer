@@ -14,7 +14,7 @@ import { CyclesContext } from '../../contexts/CyclesContext'
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Por favor nomeie a tarefa'),
-  minutesAmount: zod.number().min(1).max(60),
+  minutesAmount: zod.number().min(5).max(60),
 })
 
 type newCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
@@ -31,14 +31,19 @@ export function Home() {
     },
   })
 
-  const { watch, /* reset, */ handleSubmit } = newCycleForm
+  const { watch, reset, handleSubmit } = newCycleForm
 
   const task = watch('task')
   const isSubmitDisabled = !task
 
+  function handleCreateNewCycle(data: newCycleFormData) {
+    createNewCycle(data)
+    reset()
+  }
+
   return (
     <HomeContainer>
-      <form onSubmit={handleSubmit(createNewCycle)} action="">
+      <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
         <FormProvider {...newCycleForm}>
           <NewCycleForm />
         </FormProvider>
