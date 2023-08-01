@@ -5,3 +5,12 @@ Application build as part of a course, where the user can define tasks and set a
 **Technologies**
 
 React.js, Typescript, Styled Components
+
+**How to run**
+
+```
+npm i
+```
+```
+npm run dev
+```
