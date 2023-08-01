@@ -71,6 +71,7 @@ export function CyclesContextProvider({
 
   function markCycleAsFinished() {
     dispatch(markCycleAsFinishedAction())
+    setAmountSecondsPassed(0)
   }
 
   function setSecondsPassed(seconds: number) {
